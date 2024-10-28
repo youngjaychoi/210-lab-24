@@ -1,16 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(list<Goat> &trip);
-void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string[], string[]);
-void display_trip(list<Goat> &trip);
+int select_goat(set<Goat> &trip);
+void delete_goat(set<Goat> &trip);
+void add_goat(set<Goat> &trip, string[], string[]);
+void display_trip(set<Goat> &trip);
 int main_menu();
 
 int main() {
@@ -43,7 +43,7 @@ int main() {
     }
     fin1.close();
 
-    list<Goat> trip;
+    set<Goat> trip;
 
     int choice = 0;
     do {
@@ -83,7 +83,7 @@ int main_menu() {
     return choice;
 }
 
-int select_goat(list<Goat>& trip) {
+int select_goat(set<Goat>& trip) {
     if (trip.empty()) {
         cout << "Nothing selected" << endl << endl;
         return -1;
@@ -108,7 +108,7 @@ int select_goat(list<Goat>& trip) {
     return choice;
 }
 
-void delete_goat(list<Goat>& trip) {
+void delete_goat(set<Goat>& trip) {
     if (trip.empty()) {
         cout << "Empty goats" << endl << endl;
         return;
@@ -127,19 +127,23 @@ void delete_goat(list<Goat>& trip) {
     trip.erase(it);
 }
 
-void add_goat(list<Goat>& trip, string names[], string colors[]) {
+void add_goat(set<Goat>& trip, string names[], string colors[]) {
     int random_name = rand() % SZ_NAMES;
     int random_color = rand() % SZ_COLORS;
     int random_age = rand() % MAX_AGE;
 
     Goat new_goat(names[random_name], random_age, colors[random_color]);
-    trip.push_back(new_goat);
+    // trip.push_back(new_goat);
+    auto result = trip.insert(new_goat);
+    if (result.second) {
+        
+    }
 
     cout << "Added: " << new_goat.get_name() << " (" << new_goat.get_age() 
          << ", " << new_goat.get_color() << ")" << endl << endl;
 }
 
-void display_trip(list<Goat>& trip) {
+void display_trip(set<Goat>& trip) {
     if (trip.empty()) {
         cout << "Empty list" << endl << endl;
         return;

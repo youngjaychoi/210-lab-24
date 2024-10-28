@@ -28,7 +28,7 @@ public:
 
     // write overloaded < operator for the std::list
     bool operator<(const Goat &other) const {
-        return this->age < other.age;
+        return name < other.age;
     }
 };
 
