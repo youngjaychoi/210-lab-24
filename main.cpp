@@ -136,11 +136,11 @@ void add_goat(set<Goat>& trip, string names[], string colors[]) {
     // trip.push_back(new_goat);
     auto result = trip.insert(new_goat);
     if (result.second) {
-        
+        cout << "Added: " << new_goat.get_name() << " (" << new_goat.get_age() 
+            << ", " << new_goat.get_color() << ")" << endl << endl;
+    } else {
+        cout << "Choose another goat" << endl;
     }
-
-    cout << "Added: " << new_goat.get_name() << " (" << new_goat.get_age() 
-         << ", " << new_goat.get_color() << ")" << endl << endl;
 }
 
 void display_trip(set<Goat>& trip) {
