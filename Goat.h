@@ -15,7 +15,7 @@ public:
     // write three more constructors
     Goat(const string &name)                { this->name = name; age = 0; color = ""; }
     Goat(const string &name, int age)       { this->name = name; this->age = age; color = ""; }
-    Goat(const string &name, int age, string &color)
+    Goat(const string &name, int age, const string &color)
                                             { this->name = name; this->age = age; this->color = color; }
 
     // setters and getters
@@ -28,7 +28,7 @@ public:
 
     // write overloaded < operator for the std::list
     bool operator<(const Goat &other) const {
-        return name < other.age;
+        return name < other.name;
     }
 };
 
